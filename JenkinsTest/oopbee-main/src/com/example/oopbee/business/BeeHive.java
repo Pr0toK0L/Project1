@@ -15,28 +15,28 @@ public class BeeHive {
     private ArrayList<Bee> listBee;
 
     public void init() {
-        //create list of 10 bees  of Queen, Drone and Worker types
-        //in each bee, type and health attributes are randomly chosen
+        // create list of 10 bees of Queen, Drone and Worker types
+        // in each bee, type and health attributes are randomly chosen
         this.listBee = new ArrayList<>();
 
         this.listBee.add(new QueenBee());
         this.listBee.add(new WorkerBee());
         this.listBee.add(new Drone());
 
+        final Random rand = SecureRandom.getInstanceStrong();
 
         // Random from 1 -> 3
-        Random rand = new Random();
 
-        for (int i = 0 ; i < 7 ; i++) {
-            int r = rand.nextInt(3) + 1;
+        for (int i = 0; i < 7; i++) {
+            int r = this.rand.nextInt(3) + 1;
             if (r == 1) {
                 // add Queen bee
                 this.listBee.add(new QueenBee());
             } else if (r == 2) {
-                //add Worker bee
+                // add Worker bee
                 this.listBee.add(new WorkerBee());
             } else {
-                //add Drone bee
+                // add Drone bee
                 this.listBee.add(new Drone());
             }
         }
@@ -46,11 +46,10 @@ public class BeeHive {
         return listBee;
     }
 
-    //attack all bees
+    // attack all bees
     public void attackBees() {
         for (int i = 0; i < getAllBees().size(); i++) {
             getAllBees().get(i).damage();
         }
     }
 }
-

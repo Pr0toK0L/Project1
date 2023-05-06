@@ -1,12 +1,15 @@
 package com.example.oopbee.entity;
 
 import java.util.Random;
+//import java.security.SecureRandom;;
 
 public abstract class Bee {
 
     private String type;
     private int health;
     private boolean alive;
+    // private SecureRandom rand = new SecureRandom();
+    private Random rand = SecureRandom.getInstanceStrong();
 
     public Bee() {
         this.health = 100;
@@ -28,49 +31,48 @@ public abstract class Bee {
     public void setHealth(int health) {
         this.health = health;
 
-        //update status
+        // update status
         this.updateStatus();
     }
 
-    public boolean isAlive(){
+    public boolean isAlive() {
         return this.alive;
     }
 
     protected void updateStatus() {
-        //update the alive status when the health value changed
+        // update the alive status when the health value changed
         if ("Queen".equals(this.type)) {
             if (getHealth() < 20) {
-                //update status is die
+                // update status is die
                 this.alive = false;
             }
         } else if ("Drone".equals(this.type)) {
             if (getHealth() < 50) {
-                //update status is die
+                // update status is die
                 this.alive = false;
             }
         } else if ("Worker".equals(this.type)) {
             if (getHealth() < 70) {
-                //update status is die
+                // update status is die
                 this.alive = false;
             }
         } else {
-            //nothing here
+            // nothing here
         }
     }
 
-    //attack this bee
+    // attack this bee
     public void damage() {
 
         // only damage alive bee
         if (this.isAlive()) {
 
             // Random 1 -> 100
-            Random rand = new Random();
-            int damageAmount = rand.nextInt(100) + 1;
+            int damageAmount = this.rand.nextInt(100) + 1;
 
             int delta = this.getHealth() - damageAmount;
             if (delta > 0) {
-                //update
+                // update
                 this.setHealth(delta);
             } else {
                 // update Health to 0
