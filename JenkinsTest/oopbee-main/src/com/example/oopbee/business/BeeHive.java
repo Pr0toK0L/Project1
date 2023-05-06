@@ -23,7 +23,7 @@ public class BeeHive {
         this.listBee.add(new WorkerBee());
         this.listBee.add(new Drone());
 
-        final Random rand = SecureRandom.getInstanceStrong();
+        // final Random rand = SecureRandom.getInstanceStrong();
 
         // Random from 1 -> 3
 
@@ -42,7 +42,7 @@ public class BeeHive {
         }
     }
 
-    public ArrayList<Bee> getAllBees() {
+    public List<Bee> getAllBees() {
         return listBee;
     }
 
