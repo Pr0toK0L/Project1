@@ -57,10 +57,10 @@ public class BeeUI {
 
     }
 
-    public static void showBees(ArrayList<Bee> bees) {
+    public static void showBees(List<Bee> bees) {
         for (int i = 0; i < bees.size(); i++) {
             // show bee information
-            System.out.println(bees.get(i));
+            logger.log(bees.get(i));
         }
     }
 }
